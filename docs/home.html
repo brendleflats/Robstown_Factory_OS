@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robstown Factory OS - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2dd4bf 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 text-gray-100">
+    
+    <div class="max-w-6xl w-full">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-5xl sm:text-6xl font-extrabold mb-4">
+                <span class="gradient-text">Robstown Factory OS</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-400 mb-2">Complete Liquidation Management System</p>
+            <p class="text-sm text-gray-500">Project Lead: Roy Hodge Jr. | Following Dane's Vision</p>
+        </header>
+
+        <!-- Main Cards -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            
+            <!-- Checklist Card -->
+            <a href="index.html" class="block">
+                <div class="card-hover bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border-2 border-teal-500 h-full">
+                    <div class="text-6xl mb-4">✅</div>
+                    <h2 class="text-3xl font-bold text-teal-400 mb-4">Project Checklist</h2>
+                    <p class="text-gray-300 mb-6 text-lg">
+                        Interactive 5-phase liquidation workflow with progress tracking, custom tasks, and AI prompt generators.
+                    </p>
+                    <ul class="space-y-2 text-gray-400 mb-6">
+                        <li class="flex items-center gap-2">
+                            <span class="text-teal-400">▸</span> Phase-based workflow
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-teal-400">▸</span> Progress tracking
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-teal-400">▸</span> Auto-save functionality
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-teal-400">▸</span> Project notes scratchpad
+                        </li>
+                    </ul>
+                    <div class="inline-block bg-teal-500 text-gray-900 font-bold px-6 py-3 rounded-lg hover:bg-teal-400 transition-colors">
+                        Open Checklist →
+                    </div>
+                </div>
+            </a>
+
+            <!-- Presentation Card -->
+            <a href="presentation.html" class="block">
+                <div class="card-hover bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border-2 border-purple-500 h-full">
+                    <div class="text-6xl mb-4">📊</div>
+                    <h2 class="text-3xl font-bold text-purple-400 mb-4">Strategic Presentation</h2>
+                    <p class="text-gray-300 mb-6 text-lg">
+                        7-slide interactive presentation showcasing the vision, development, and strategic impact of Factory OS.
+                    </p>
+                    <ul class="space-y-2 text-gray-400 mb-6">
+                        <li class="flex items-center gap-2">
+                            <span class="text-purple-400">▸</span> Vision to reality journey
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-purple-400">▸</span> Dashboard showcase
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-purple-400">▸</span> Strategic impact metrics
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-purple-400">▸</span> Future milestones
+                        </li>
+                    </ul>
+                    <div class="inline-block bg-purple-500 text-gray-900 font-bold px-6 py-3 rounded-lg hover:bg-purple-400 transition-colors">
+                        View Presentation →
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+            <h3 class="text-xl font-bold text-gray-300 mb-4">Quick Links</h3>
+            <div class="grid sm:grid-cols-3 gap-4">
+                <a href="https://github.com/brendleflats/Robstown_Factory_OS" target="_blank" class="bg-gray-700/50 hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors text-center">
+                    <div class="text-2xl mb-1">📦</div>
+                    <div class="text-sm text-gray-300">GitHub Repo</div>
+                </a>
+                <a href="https://github.com/brendleflats/Robstown_Factory_OS/blob/main/README_NEW.md" target="_blank" class="bg-gray-700/50 hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors text-center">
+                    <div class="text-2xl mb-1">📖</div>
+                    <div class="text-sm text-gray-300">Documentation</div>
+                </a>
+                <a href="https://github.com/brendleflats/Robstown_Factory_OS/blob/main/QUICKSTART.md" target="_blank" class="bg-gray-700/50 hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors text-center">
+                    <div class="text-2xl mb-1">🚀</div>
+                    <div class="text-sm text-gray-300">Quick Start</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>Robstown Factory OS © 2025 | Built for Efficient Factory Liquidation</p>
+        </footer>
+    </div>
+
+</body>
+</html>

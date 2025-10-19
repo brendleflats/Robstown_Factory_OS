@@ -39,6 +39,33 @@
             color: var(--text-muted);
             margin-top: 5px;
         }
+        .nav-bar {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .nav-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        .nav-bar a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .nav-bar a.active {
+            background-color: var(--green-accent);
+            color: white;
+        }
         #notes-container {
             margin-top: 20px;
         }
@@ -212,6 +239,14 @@
 <body>
 
     <div class="container">
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html">🏠 Home</a>
+            <a href="index.html" class="active">✅ Checklist</a>
+            <a href="presentation.html">📊 Presentation</a>
+            <a href="https://github.com/brendleflats/Robstown_Factory_OS" target="_blank">📦 GitHub</a>
+        </div>
+
         <div class="header">
             <h1>Factory Liquidation HQ</h1>
             <p>Interactive Project Plan & Checklist</p>
