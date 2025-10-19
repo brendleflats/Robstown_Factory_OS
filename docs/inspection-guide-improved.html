@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Inspector Walk-Through Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --border: #334155;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            color: var(--muted);
+            font-size: 1.1em;
+        }
+        
+        .step-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-header h2 {
+            font-size: 1.8em;
+            color: var(--accent);
+        }
+        
+        .timing {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .checklist li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            border-radius: 4px;
+        }
+        
+        .checklist li strong {
+            color: var(--success);
+        }
+        
+        .script-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 2px solid var(--warning);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .script-box h4 {
+            color: var(--warning);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .script-box p {
+            font-style: italic;
+            line-height: 1.8;
+        }
+        
+        .location-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .location-table th,
+        .location-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .location-table th {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .location-table tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .pro-tip {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid #8b5cf6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .pro-tip strong {
+            color: #8b5cf6;
+        }
+        
+        .map-example {
+            background: rgba(16, 185, 129, 0.05);
+            border: 2px dashed var(--success);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .map-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .map-legend-item {
+            padding: 10px;
+            background: var(--card);
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .step-section {
+                page-break-inside: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            .step-header h2 {
+                font-size: 1.4em;
+            }
+            .location-table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>👨‍💼 City Inspector Walk-Through Guide</h1>
+            <p>A professional, strategic approach to securing lighting approval and demonstrating site control</p>
+        </header>
+
+        <!-- Step 0 -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">0</div>
+                <h2>The Quick Map</h2>
+            </div>
+            <div class="timing">
+                ⏱️ <strong>15 Minutes Before Inspector Arrives</strong>
+            </div>
+            <p style="margin-bottom: 20px;">Control the route, control the narrative. A simple map gives you instant authority.</p>
+            
+            <div class="map-example">
+                <h3 style="margin-bottom: 15px;">Hand-Draw or Print This Simple Map:</h3>
+                <p style="margin-bottom: 15px;">Draw a rough square/rectangle representing the facility. Mark these zones:</p>
+                <div class="map-legend">
+                    <div class="map-legend-item">
+                        <strong>E</strong><br>Entrance
+                    </div>
+                    <div class="map-legend-item">
+                        <strong>→</strong><br>The Route
+                    </div>
+                    <div class="map-legend-item">
+                        <strong>H</strong><br>Hazard Zone
+                    </div>
+                    <div class="map-legend-item">
+                        <strong>P</strong><br>Electrical Panel
+                    </div>
+                    <div class="map-legend-item">
+                        <strong>C</strong><br>Cleared Zone (25%)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pro-tip">
+                <strong>Pro-Tip:</strong> Keep the map on your clipboard with your printed Progress Tracker. A hand-drawn map is a powerful professional tool.
+            </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h2>Pre-Entry Setup</h2>
+            </div>
+            <div class="timing">
+                ⏱️ <strong>30 Minutes Before Inspector Arrives</strong>
+            </div>
+            <p style="margin-bottom: 20px;">The first impression is impeccable.</p>
+            
+            <ul class="checklist">
+                <li><strong>Welcome Desk:</strong> Set up clean spot near entrance with loaner hard hats, vests, clipboard with Zone Map and Progress Tracker</li>
+                <li><strong>Clear the Path:</strong> Final sweep of designated route (→). Remove all tools, cords, debris</li>
+                <li><strong>Contain Hazards:</strong> Seal roof hole area (H) with caution tape and cones. Place clean bucket under drip</li>
+                <li><strong>Check Panel:</strong> Ensure Electrical Panel (P) has full 3-foot clear perimeter</li>
+            </ul>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h2>The Introduction</h2>
+            </div>
+            <div class="timing">
+                ⏱️ <strong>First 5 Minutes</strong>
+            </div>
+            <p style="margin-bottom: 20px;">Establish authority and professionalism immediately.</p>
+            
+            <div class="script-box">
+                <h4>🗣️ The Greeting</h4>
+                <p>"Welcome. Thank you for your time. For your safety, please grab a hard hat and vest."</p>
+            </div>
+            
+            <div class="script-box">
+                <h4>🗣️ Frame the Tour</h4>
+                <p>"We have a very controlled site plan. I've mapped our inspection route here (Point to →). Our process is driven by safety and systematic liquidation, which we track in real-time on this Progress Tracker."</p>
+            </div>
+            
+            <div class="pro-tip">
+                <strong>Pro-Tip:</strong> Use their name often. It shows you're prepared and builds rapport.
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <h2>The Controlled Walk-Through</h2>
+            </div>
+            <div class="timing">
+                ⏱️ <strong>Mid-Tour</strong>
+            </div>
+            <p style="margin-bottom: 20px;">Keep pace moving, pause at key points to deliver planned statements.</p>
+            
+            <table class="location-table">
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Action / Script</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>CLEARED ZONE (C)</strong></td>
+                        <td>"This is the outcome of our Phase 1 liquidation. As you can see, we are systematically turning chaos into capital and achieving a true blank canvas. Our Tracker shows we're 25% complete."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HAZARD ZONE (H)</strong></td>
+                        <td>"As our Phase 1 assessment indicated, we have a structural issue here. The area is sealed off. We have [Contractor Name] scheduled, and the permit for repair is being expedited. Safety is our priority until the repair is complete."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ELECTRICAL PANEL (P)</strong></td>
+                        <td>"This is the main disconnect. We have [Electrician Name/Company], a licensed master electrician, prepared to conduct the necessary safety and repair work. We've isolated the system and cleared the area for immediate access."</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <h2>The Ask</h2>
+            </div>
+            <div class="timing">
+                ⏱️ <strong>Near the Electrical Panel</strong>
+            </div>
+            <p style="margin-bottom: 20px;">Deliver your request calmly, connecting it to safety and the next phase.</p>
+            
+            <div class="script-box">
+                <h4>🗣️ The Full Ask</h4>
+                <p>"To safely and efficiently complete the necessary electrical work—and to allow our contractors clear visibility on the main floor—we need to request approval to energize the critical overhead safety lighting. We are ready to submit the required permits and documentation for [Electrician Name] as soon as we have your preliminary approval."</p>
+            </div>
+            
+            <div class="pro-tip">
+                <strong>Pro-Tip:</strong> Do NOT ask "Can we turn on the lights?" Ask for permission to activate "critical safety lighting." It sounds less like convenience, more like necessity.
+            </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <h2>The Wrap-Up</h2>
+            </div>
+            <div class="timing">
+                ⏱️ <strong>Exit</strong>
+            </div>
+            <p style="margin-bottom: 20px;">End on a professional and proactive note.</p>
+            
+            <ul class="checklist">
+                <li><strong>The Review:</strong> "Do you have any immediate concerns regarding our safety protocols or site management, [Inspector's Name]?"</li>
+                <li><strong>The Next Step:</strong> "What is the next step on your end for the lighting approval, and who should I send the permit package to for the final sign-off?"</li>
+                <li><strong>Immediate Follow-Up:</strong> Send professional "Thank You" email within one hour, reiterating commitment to safety and attaching electrician contact info</li>
+            </ul>
+        </div>
+
+        <footer style="text-align: center; margin-top: 40px; padding: 30px; border-top: 1px solid var(--border); color: var(--muted);">
+            <p style="font-size: 1.1em; margin-bottom: 10px;"><strong>Professional. Prepared. In Control.</strong></p>
+            <p>Robstown Factory OS | City Inspection Guide</p>
+        </footer>
+    </div>
+</body>
+</html>

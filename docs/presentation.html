@@ -94,10 +94,10 @@
                 accentColor: "border-teal-400 text-teal-400"
             },
             {
-                title: "2. Initial Assessment: Robstown's Potential",
-                tagline: "Uncovering opportunities within the existing industrial complex.",
-                info: "Upon arrival, we conducted a thorough assessment of the Robstown site. This involved evaluating existing infrastructure, identifying bottlenecks in the previous operational model, and charting the potential for digital and physical modernization. This baseline defines our path forward.",
-                image: "https://placehold.co/400x250/fca5a5/1f2937?text=EXISTING+ASSETS+%26+SITE",
+                title: "2. Strategic Location: Robstown Site",
+                tagline: "Prime industrial location next to high-traffic infrastructure.",
+                info: "The Robstown facility is strategically positioned next to a major hotel and highway access, providing exceptional visibility and logistics advantages. This interactive map shows the exact location and surrounding area, highlighting the property's development potential.",
+                iframe: '<iframe src="https://www.google.com/maps/embed?pb=!4v1760909955614!6m8!1m7!1suo6qVoyH6qpKKCFBEcXxKg!2m2!1d27.78924919823254!2d-97.66145294008969!3f306.2828!4f0!5f0.7820865974627469" width="100%" height="400" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
                 accentColor: "border-red-400 text-red-400"
             },
             {
@@ -144,11 +144,17 @@
         // --- Core Functions ---
         function renderSlide(index) {
             const slide = slidesData[index];
+            
+            // Determine if this slide has an iframe or image
+            const mediaContent = slide.iframe 
+                ? `<div class="w-full rounded-lg shadow-lg border-4 ${slide.accentColor}">${slide.iframe}</div>`
+                : `<img src="${slide.image}" alt="${slide.title}" class="w-full rounded-lg shadow-lg border-4 ${slide.accentColor} transition-transform hover:scale-105 duration-300">`;
+            
             slidesContainer.innerHTML = `
                 <div class="slide-content flex flex-col md:flex-row gap-6 items-center opacity-0">
-                    <!-- Image Section -->
+                    <!-- Image/Iframe Section -->
                     <div class="w-full md:w-1/2 flex-shrink-0">
-                        <img src="${slide.image}" alt="${slide.title}" class="w-full rounded-lg shadow-lg border-4 ${slide.accentColor} transition-transform hover:scale-105 duration-300">
+                        ${mediaContent}
                     </div>
                     <!-- Text Section -->
                     <div class="w-full md:w-1/2">
