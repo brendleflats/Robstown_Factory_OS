@@ -34,7 +34,13 @@ echo   ✓ Done!
 
 echo.
 echo [3/5] Committing changes...
-git commit -m "Complete Factory OS v1.0: Dashboard, Checklist, Presentation with full navigation and demo materials"
+if exist COMMIT_MESSAGE.txt (
+    echo   Using message from COMMIT_MESSAGE.txt
+    git commit -F COMMIT_MESSAGE.txt
+) else (
+    echo   Using default message
+    git commit -m "Complete Factory OS v1.0: Dashboard, Checklist, Presentation with full navigation and demo materials"
+)
 echo   ✓ Done!
 
 echo.
