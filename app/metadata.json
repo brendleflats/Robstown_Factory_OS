@@ -1,0 +1,5 @@
+{
+  "name": "Industrial Property Liquidation Dashboard",
+  "description": "An interactive dashboard for managing and visualizing industrial property assets and inventory across multiple buildings. Includes an interactive map, key performance indicators, and searchable inventory lists.",
+  "requestFramePermissions": []
+}
