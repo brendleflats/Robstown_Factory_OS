@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Robstown Blank Canvas Project</title>
+    <style>
+        /* --- Base & Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Roboto:wght@300;400&display=swap');
+
+        :root {
+            --color-bg: #111111;
+            --color-card: #1a1a1a;
+            --color-text: #eaeaea;
+            --color-subtext: #999;
+            --color-accent: #00aaff;
+            --font-heading: 'Teko', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        /* --- Navigation Bar --- */
+        .nav-bar {
+            background: #000;
+            padding: 15px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--color-accent);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-bar a {
+            color: var(--color-text);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-bar a:hover {
+            color: var(--color-accent);
+        }
+        
+        .nav-bar a.active {
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+        
+        /* --- Structure --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        header h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            color: var(--color-accent);
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        /* --- The 3-Act Infographic --- */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        /* The vertical timeline connector */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 18px;
+            height: 100%;
+            width: 4px;
+            background: var(--color-card);
+            z-index: 1;
+        }
+        
+        .act {
+            position: relative;
+            margin-bottom: 50px;
+            padding-left: 60px; /* Space for the "dot" */
+            z-index: 2;
+        }
+        
+        /* The "dot" for each act */
+        .act::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 40px;
+            height: 40px;
+            background: var(--color-card);
+            border: 4px solid var(--color-accent);
+            border-radius: 50%;
+            z-index: 3;
+        }
+        
+        .act h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 0 10px 0;
+        }
+        
+        .act h3 {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 1.5rem;
+            color: var(--color-subtext);
+            margin: 0 0 20px 0;
+            font-style: italic;
+        }
+        
+        .act p {
+            font-size: 1.1rem;
+            max-width: 80ch;
+        }
+        
+        /* --- Grid for Acts 2 & 3 --- */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .grid-item {
+            background: var(--color-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 170, 255, 0.3);
+        }
+        
+        .grid-item .text-content {
+            padding: 20px;
+        }
+        
+        .grid-item h4 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--color-accent);
+            margin: 0 0 10px 0;
+        }
+        
+        /* --- Images --- */
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid #333;
+        }
+        
+        .full-width-img {
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        /* Clickable links for your apps */
+        .app-link {
+            display: block;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .app-link:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 170, 255, 0.2);
+        }
+        
+        /* --- Footer CTA --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
+            color: var(--color-subtext);
+        }
+        
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr; /* Stack columns on mobile */
+            }
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .act {
+                padding-left: 40px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+            .act::before {
+                width: 20px;
+                height: 20px;
+                left: 0;
+            }
+            
+            .nav-bar a {
+                display: inline-block;
+                margin: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <a href="home.html">🏠 Home</a>
+        <a href="index.html">✅ Checklist</a>
+        <a href="presentation.html">📊 Presentation</a>
+        <a href="blank-canvas.html" class="active">🎨 Blank Canvas</a>
+        <a href="https://github.com/brendleflats/Robstown_Factory_OS" target="_blank">📦 GitHub</a>
+    </nav>
+
+    <header>
+        <h1>The Robstown Blank Canvas Project</h1>
+    </header>
+
+    <main class="container">
+        <div class="timeline">
+            <section class="act" id="act1">
+                <h2>ACT 1: THE OPPORTUNITY</h2>
+                <h3>A Prime Property, Locked Away.</h3>
+                <div class="full-width-img">
+                    <img src="1000007705.jpg" alt="Exterior of the Robstown industrial complex">
+                </div>
+                <p>Next to a high-traffic hotel in Robstown, Texas sits a massive industrial complex. Its true value is locked behind decades of old equipment. Our mission: to rapidly clear and unlock this property for its next-generation use.</p>
+            </section>
+            
+            <section class="act" id="act2">
+                <h2>ACT 2: THE PRECISION TAKEDOWN</h2>
+                <h3>We're Not Guessing. We're Analyzing.</h3>
+                
+                <div class="grid">
+                    <a href="home.html" class="app-link grid-item" title="Click to view the Analyzer App">
+                        <img src="1000007792.png" alt="Screenshot of the Robstown Factory Item Analyzer App">
+                        <div class="text-content">
+                            <h4>THE "HOW": RAPID-SORT AI</h4>
+                            <p>We're using custom-built AI tools to scan, identify, and price every asset on-site. What used to take days now takes seconds. This speed accelerates the entire liquidation.</p>
+                        </div>
+                    </a>
+                    
+                    <a href="../app" class="app-link grid-item" title="Click to view the Live Dashboard" target="_blank">
+                        <img src="1000007745.png" alt="Screenshot of the Industrial Property Liquidation Dashboard">
+                        <div class="text-content">
+                            <h4>THE "PROOF": PROGRESS TRACKER</h4>
+                            <p>Our "Clear-Out Progress Tracker" gives a real-time, 30,000-foot view of the operation. We are already <strong>25% complete</strong>, systematically turning clutter into capital and chaos into order.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            
+            <section class="act" id="act3">
+                <h2>ACT 3: THE BLANK CANVAS</h2>
+                <h3>The Canvas Is Emerging.</h3>
+                <div class="grid">
+                    <div class="grid-item">
+                        <img src="ccc73b7a-a477-4b40-8b62-92837b86fac0.jpg" alt="A cleared section of the factory floor">
+                        <div class="text-content">
+                            <h4>THE "PRODUCT": A CLEAN SLATE</h4>
+                            <p>This is what progress looks like. The dust is settling as we clear the factory floor, revealing a clean, strategic, blank canvas ready for development.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-item">
+                        <img src="1000007751.png" alt="Satellite map showing the factory's location">
+                        <div class="text-content">
+                            <h4>THE "LOCATION": STRATEGIC ADJACENCY</h4>
+                            <p>This is the final product: a massive, development-ready footprint, perfectly positioned next to key local infrastructure and ready for its next big opportunity.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>The Robstown Blank Canvas Project | In Progress</p>
+        <p>Contact us for investment or asset inquiries.</p>
+    </footer>
+
+</body>
+</html>

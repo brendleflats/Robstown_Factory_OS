@@ -3,13 +3,15 @@ const path = require('path');
 
 console.log('\n🔄 Converting your inventory data...\n');
 
-// Read the inventory template
+// Read the inventory template (v2 with review workflow)
 let inventoryData;
+const templateFile = 'inventory-template-v2.json';
 try {
-    const rawData = fs.readFileSync('inventory-template.json', 'utf8');
+    const rawData = fs.readFileSync(templateFile, 'utf8');
     inventoryData = JSON.parse(rawData);
+    console.log(`✅ Reading from: ${templateFile}\n`);
 } catch (error) {
-    console.error('❌ Error reading inventory-template.json');
+    console.error(`❌ Error reading ${templateFile}`);
     console.error('Make sure the file exists and is valid JSON.');
     process.exit(1);
 }
@@ -31,20 +33,28 @@ if (items.length === 0) {
 
 console.log(`✅ Found ${items.length} items to convert\n`);
 
-// Convert to dashboard format
+// Convert to dashboard format (include all new fields)
 const dashboardItems = items.map(item => {
     return {
         id: item.id,
         buildingId: item.buildingId,
+        buildingName: item.buildingName,
         name: item.name,
-        status: item.status,
-        value: item.value,
-        condition: item.condition,
-        imageUrl: '/placeholder-equipment.jpg', // Will update with real photos later
         description: item.description,
         specifications: item.specifications,
+        condition: item.condition,
+        conditionRating: item.conditionRating,
+        status: item.status,
+        reviewStatus: item.reviewStatus,
+        reviewedBy: item.reviewedBy,
+        reviewDate: item.reviewDate,
+        reviewNotes: item.reviewNotes,
+        value: item.value,
         location: item.location,
         serialNumber: item.serialNumber,
+        imageUrl: item.photoUrl || '/placeholder-equipment.jpg',
+        photoUrl: item.photoUrl,
+        aiAnalysis: item.aiAnalysis,
         notes: item.notes
     };
 });
@@ -93,6 +103,27 @@ export const INVENTORY_STATS = {
     building2Items: ${building2Count},
     building3Items: ${building3Count},
     lastUpdated: '${new Date().toLocaleString()}'
+};
+
+// Status color mapping for UI
+export const STATUS_COLORS = {
+    'For Sale': 'bg-emerald-500/20 text-emerald-400 border-emerald-500',
+    'Sold': 'bg-blue-500/20 text-blue-400 border-blue-500',
+    'Pending Review': 'bg-yellow-500/20 text-yellow-400 border-yellow-500',
+    'Reserved': 'bg-purple-500/20 text-purple-400 border-purple-500',
+    'Scrap': 'bg-red-500/20 text-red-400 border-red-500',
+    'In Progress': 'bg-orange-500/20 text-orange-400 border-orange-500',
+    'Pending': 'bg-gray-500/20 text-gray-400 border-gray-500'
+};
+
+// Map status color mapping for PropertyMap component
+export const MAP_STATUS_COLORS: Record<string, string> = {
+    'In Progress': '#f97316', // Orange
+    'Completed': '#10b981', // Green
+    'Pending': '#6b7280', // Gray
+    'For Sale': '#10b981', // Green
+    'Sold': '#3b82f6', // Blue
+    'Reserved': '#8b5cf6' // Purple
 };
 `;
 

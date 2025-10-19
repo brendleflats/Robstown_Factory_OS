@@ -1,581 +1,127 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Factory Liquidation HQ</title>
+    <title>Robstown Factory OS - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-dark: #1e2022;
-            --card-dark: #2a2c2f;
-            --text-light: #f0f0f0;
-            --text-muted: #9a9a9a;
-            --primary-color: #007bff;
-            --green-accent: #28a745;
-            --yellow-accent: #ffc107;
-            --border-color: #444;
-        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            margin: 0;
-            padding: 25px;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
-        .container {
-            max-width: 950px;
-            margin: 0 auto;
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-        .header h1 {
-            margin: 0;
-            color: var(--text-light);
+        .gradient-text {
+            background: linear-gradient(135deg, #2dd4bf 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .header p {
-            font-size: 1.1em;
-            color: var(--text-muted);
-            margin-top: 5px;
-        }
-        .nav-bar {
-            background-color: var(--card-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .nav-bar a {
-            color: var(--text-light);
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: all 0.2s;
-            font-weight: 500;
-        }
-        .nav-bar a:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        .nav-bar a.active {
-            background-color: var(--green-accent);
-            color: white;
-        }
-        #notes-container {
-            margin-top: 20px;
-        }
-        #notes-container textarea {
-            width: 100%;
-            box-sizing: border-box;
-            background-color: var(--card-dark);
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            border-radius: 8px;
-            padding: 10px;
-            font-family: inherit;
-            font-size: 0.95em;
-            min-height: 80px;
-        }
-        #global-controls {
-            margin-top: 10px;
-            text-align: right;
-        }
-        #reset-button {
-            background: #c0392b;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            font-size: 0.9em;
-            border-radius: 5px;
-            cursor: pointer;
-            opacity: 0.8;
-            transition: opacity 0.2s;
-        }
-        #reset-button:hover { opacity: 1; }
-        #progress-section {
-            margin-bottom: 25px;
-        }
-        #progress-container {
-            width: 100%;
-            background-color: var(--card-dark);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-        #progress-bar {
-            width: 0%;
-            height: 28px;
-            background-color: var(--green-accent);
-            transition: width 0.4s ease;
-        }
-        #progress-text {
-            text-align: center;
-            font-weight: bold;
-            color: var(--text-light);
-            margin-top: -26px;
-            padding-bottom: 4px;
-            font-size: 0.9em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-        .phase {
-            background-color: var(--card-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .phase-header {
-            padding: 20px 25px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-        }
-        .phase-header:hover { background-color: #3a3c3f; }
-        .phase-header h2 {
-            margin: 0;
-            color: var(--text-light);
-            font-size: 1.6em;
-        }
-        .toggle-icon {
-            font-size: 1.5em;
-            transition: transform 0.3s ease;
-        }
-        .phase.active .toggle-icon {
-            transform: rotate(90deg);
-        }
-        .phase-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            border-top: 1px solid var(--border-color);
-        }
-        .phase-content-inner {
-            padding: 25px;
-        }
-        ul.task-list {
-            list-style: none;
-            padding-left: 0;
-            margin-top: 0;
-        }
-        li.task {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            line-height: 1.5;
-        }
-        input[type="checkbox"] {
-            margin-right: 15px;
-            flex-shrink: 0;
-            margin-top: 6px;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-        label {
-            cursor: pointer;
-            flex-grow: 1;
-        }
-        input[type="checkbox"]:checked + label {
-            text-decoration: line-through;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-        .gemini-prompt {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.95em;
-            transition: background-color 0.2s;
-            margin-top: 10px;
-            margin-right: 10px;
-        }
-        .gemini-prompt:hover { background-color: #0056b3; }
-        .gemini-prompt:disabled {
-            background-color: var(--green-accent);
-            cursor: default;
-        }
-        .add-task-form {
-            margin-top: 25px;
-            display: flex;
-            border-top: 1px dashed var(--border-color);
-            padding-top: 20px;
-        }
-        .add-task-form input[type="text"] {
-            flex-grow: 1;
-            background-color: var(--bg-dark);
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            padding: 10px;
-            border-radius: 5px 0 0 5px;
-            font-size: 1em;
-        }
-        .add-task-form button {
-            background-color: var(--yellow-accent);
-            border: none;
-            color: var(--bg-dark);
-            padding: 0 15px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 0 5px 5px 0;
-            font-size: 1em;
-            transition: background-color 0.2s;
-        }
-        .add-task-form button:hover { background-color: #d39e00; }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex items-center justify-center p-4 text-gray-100">
+    
+    <div class="max-w-6xl w-full">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-5xl sm:text-6xl font-extrabold mb-4">
+                <span class="gradient-text">Robstown Factory OS</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-400 mb-2">Complete Liquidation Management System</p>
+            <p class="text-sm text-gray-500">Project Lead: Roy Hodge Jr. | Following Dane's Vision</p>
+        </header>
 
-    <div class="container">
-        <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <a href="home.html">🏠 Home</a>
-            <a href="index.html" class="active">✅ Checklist</a>
-            <a href="presentation.html">📊 Presentation</a>
-            <a href="https://github.com/brendleflats/Robstown_Factory_OS" target="_blank">📦 GitHub</a>
-        </div>
-
-        <div class="header">
-            <h1>Factory Liquidation HQ</h1>
-            <p>Interactive Project Plan & Checklist</p>
+        <!-- Main Cards -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
             
-            <div id="notes-container">
-                <textarea id="project-notes" placeholder="Project Scratchpad (e.g., building numbers, measurements, Dane's requests... saved automatically)"></textarea>
-            </div>
-            
-            <div id="global-controls">
-                <button id="reset-button" title="Reset all tasks and notes">Reset Project</button>
-            </div>
-        </div>
-
-        <div id="progress-section">
-            <div id="progress-container">
-                <div id="progress-bar"></div>
-                <div id="progress-text">0 / 0 (0%)</div>
-            </div>
-        </div>
-
-        <div class="phase" id="phase1">
-            <div class="phase-header">
-                <h2>📍 Phase 1: Logistics & "Mission HQ"</h2>
-                <span class="toggle-icon">▶</span>
-            </div>
-            <div class="phase-content">
-                <div class="phase-content-inner">
-                    <ul class="task-list" id="p1-list">
-                        <li class="task"><input type="checkbox" id="p1-t1"><label for="p1-t1">Finish spray-painting zones. Mark main entry doors.</label></li>
-                        <li class="task"><input type="checkbox" id="p1-t2"><label for="p1-t2">Use paint/tape to create a clear "Buyer Path" (one-way traffic).</label></li>
-                        <li class="task"><input type="checkbox" id="p1-t3"><label for="p1-t3">Designate your "Liquidation HQ" office.</label></li>
-                        <li class="task"><input type="checkbox" id="p1-t4"><label for="p1-t4">Print and post the Color-Coded Zone Map in HQ.</label></li>
-                        <li class="task"><input type="checkbox" id="p1-t5"><label for="p1-t5">Finish all lock-switching.</label></li>
-                        <li class="task"><input type="checkbox" id="p1-t6"><label for="p1-t6">Create the labeled key box to show Dane.</label></li>
+            <!-- Checklist Card -->
+            <a href="index.html" class="block">
+                <div class="card-hover bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border-2 border-teal-500 h-full">
+                    <div class="text-6xl mb-4">✅</div>
+                    <h2 class="text-3xl font-bold text-teal-400 mb-4">Project Checklist</h2>
+                    <p class="text-gray-300 mb-6 text-lg">
+                        Interactive 5-phase liquidation workflow with progress tracking, custom tasks, and AI prompt generators.
+                    </p>
+                    <ul class="space-y-2 text-gray-400 mb-6">
+                        <li class="flex items-center gap-2">
+                            <span class="text-teal-400">▸</span> Phase-based workflow
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-teal-400">▸</span> Progress tracking
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-teal-400">▸</span> Auto-save functionality
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-teal-400">▸</span> Project notes scratchpad
+                        </li>
                     </ul>
-                    <form class="add-task-form"><input type="text" placeholder="Add custom task..."><button type="submit">Add</button></form>
+                    <div class="inline-block bg-teal-500 text-gray-900 font-bold px-6 py-3 rounded-lg hover:bg-teal-400 transition-colors">
+                        Open Checklist →
+                    </div>
                 </div>
+            </a>
+
+            <!-- Presentation Card -->
+            <a href="presentation.html" class="block">
+                <div class="card-hover bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border-2 border-purple-500 h-full">
+                    <div class="text-6xl mb-4">📊</div>
+                    <h2 class="text-3xl font-bold text-purple-400 mb-4">Strategic Presentation</h2>
+                    <p class="text-gray-300 mb-6 text-lg">
+                        7-slide interactive presentation showcasing the vision, development, and strategic impact of Factory OS.
+                    </p>
+                    <ul class="space-y-2 text-gray-400 mb-6">
+                        <li class="flex items-center gap-2">
+                            <span class="text-purple-400">▸</span> Vision to reality journey
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-purple-400">▸</span> Dashboard showcase
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-purple-400">▸</span> Strategic impact metrics
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-purple-400">▸</span> Future milestones
+                        </li>
+                    </ul>
+                    <div class="inline-block bg-purple-500 text-gray-900 font-bold px-6 py-3 rounded-lg hover:bg-purple-400 transition-colors">
+                        View Presentation →
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+            <h3 class="text-xl font-bold text-gray-300 mb-4">Quick Links</h3>
+            <div class="grid sm:grid-cols-3 gap-4">
+                <a href="https://github.com/brendleflats/Robstown_Factory_OS" target="_blank" class="bg-gray-700/50 hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors text-center">
+                    <div class="text-2xl mb-1">📦</div>
+                    <div class="text-sm text-gray-300">GitHub Repo</div>
+                </a>
+                <a href="https://github.com/brendleflats/Robstown_Factory_OS/blob/main/README_NEW.md" target="_blank" class="bg-gray-700/50 hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors text-center">
+                    <div class="text-2xl mb-1">📖</div>
+                    <div class="text-sm text-gray-300">Documentation</div>
+                </a>
+                <a href="https://github.com/brendleflats/Robstown_Factory_OS/blob/main/QUICKSTART.md" target="_blank" class="bg-gray-700/50 hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors text-center">
+                    <div class="text-2xl mb-1">🚀</div>
+                    <div class="text-sm text-gray-300">Quick Start</div>
+                </a>
             </div>
         </div>
 
-        <div class="phase" id="phase2">
-            <div class="phase-header">
-                <h2>💻 Phase 2: The "Single Source of Truth"</h2>
-                <span class="toggle-icon">▶</span>
-            </div>
-            <div class="phase-content">
-                <div class="phase-content-inner">
-                    <ul class="task-list" id="p2-list">
-                        <li class="task"><input type="checkbox" id="p2-t1"><label for="p2-t1">Create Master Google Drive folder: [Factory Name] Liquidation Project.</label></li>
-                        <li class="task"><input type="checkbox" id="p2-t2"><label for="p2-t2">Share the master folder with Dane and John.</label></li>
-                        <li class="task"><input type="checkbox" id="p2-t3"><label for="p2-t3">Create Google Sheet in folder: MASTER Inventory - [Factory Name].</label></li>
-                        <li class="task"><input type="checkbox" id="p2-t5"><label for="p2-t5">Create folder in Drive: Inventory Photos.</label></li>
-                        <li class="task"><input type="checkbox" id="p2-t6"><label for="p2-t6">Create sub-folders in Photos: Building 1 (Silver), Building 2 (Green), Building 3 (Red).</label></li>
-                    </ul>
-                    <button class="gemini-prompt" data-prompt="Generate a Google Sheet template for me, Dane, and John. It needs to manage a factory inventory. Include columns for: ItemID, Building (Color), Item Name, Description, Specs, Condition (1-5), Status (For Sale, Sold, Scrap), and Estimated Value.">
-                        Copy Prompt: Google Sheet Template
-                    </button>
-                    <form class="add-task-form"><input type="text" placeholder="Add custom task..."><button type="submit">Add</button></form>
-                </div>
-            </div>
-        </div>
-        
-        <div class="phase" id="phase3">
-            <div class="phase-header">
-                <h2>⚡ Phase 3: Inventory Blitz (You + Mike)</h2>
-                <span class="toggle-icon">▶</span>
-            </div>
-            <div class="phase-content">
-                <div class="phase-content-inner">
-                    <ul class="task-list" id="p3-list">
-                        <li class="task"><input type="checkbox" id="p3-t1"><label for="p3-t1">Assign Roles: You (Logger/Director), Mike (Tagger/Shooter).</label></li>
-                        <li class="task"><input type="checkbox" id="p3-t2"><label for="p3-t2">Execute Workflow: Tag, photograph, log, upload, and get appraisal from Gemini.</label></li>
-                        <li class="task"><input type="checkbox" id="p3-t3"><label for="p3-t3">Inventory All Major Assets using the workflow.</label></li>
-                        <li class="task"><input type="checkbox" id="p3-t4"><label for="p3-t4">"Lot" the Smalls: Group, wrap, and tag low-value items as single lots.</label></li>
-                    </ul>
-                    <form class="add-task-form"><input type="text" placeholder="Add custom task..."><button type="submit">Add</button></form>
-                </div>
-            </div>
-        </div>
-
-        <div class="phase" id="phase4">
-            <div class="phase-header">
-                <h2>🛡️ Phase 4: Safety & Operations "Playbook"</h2>
-                <span class="toggle-icon">▶</span>
-            </div>
-            <div class="phase-content">
-                <div class="phase-content-inner">
-                    <ul class="task-list" id="p4-list">
-                        <li class="task"><input type="checkbox" id="p4-t3"><label for="p4-t3">Get the updated color-coded map from Gemini (based on building info).</label></li>
-                        <li class="task"><input type="checkbox" id="p4-t4"><label for="p4-t4">Assemble the "Buyer Packet": 1. Map, 2. Safety Rules, 3. Waiver.</label></li>
-                        <li class="task"><input type="checkbox" id="p4-t5"><label for="p4-t5">Print a stack of 50 packets.</label></li>
-                        <li class="task"><input type="checkbox" id="p4-t6"><label for="p4-t6">Save digital PDF copies to the master Google Folder.</label></li>
-                    </ul>
-                    <button class="gemini-prompt" data-prompt="Draft a 1-page site safety rules document for a factory liquidation sale. It must be clear, concise, and professional. Include rules about: Required PPE (hard hats, closed-toe shoes), sticking to the marked 'Buyer Path', no operating machinery, and 'you are responsible for your own loading and removal'.">
-                        Copy Prompt: Site Safety Rules
-                    </button>
-                    <button class="gemini-prompt" data-prompt="Draft a simple, 1-page liability waiver for a factory liquidation sale. It should state that buyers enter at their own risk, the company is not responsible for accidents or injuries, and all items are sold 'as-is, where-is' with no warranties.">
-                        Copy Prompt: Liability Waiver
-                    </button>
-                    <form class="add-task-form"><input type="text" placeholder="Add custom task..."><button type="submit">Add</button></form>
-                </div>
-            </div>
-        </div>
-
-        <div class="phase" id="phase5">
-            <div class="phase-header">
-                <h2>🎁 Phase 5: The "Turnover Kit"</h2>
-                <span class="toggle-icon">▶</span>
-            </div>
-            <div class="phase-content">
-                <div class="phase-content-inner">
-                    <ul class="task-list" id="p5-list">
-                        <li class="task"><input type="checkbox" id="p5-t1"><label for="p5-t1">Pick 5 high-value items for sample listings.</label></li>
-                        <li class="task"><input type="checkbox" id="p5-t3"><label for="p5-t3">Save as Sample Listings.doc in the master Google Folder.</label></li>
-                    </ul>
-                     <button class="gemini-prompt" data-prompt="Write 5 professional sales listings for the following items: [ItemID 1001: ...], [ItemID 1010: ...], ... (I will provide the details). Each listing should have a catchy title, a clear description, key specs, and a price.">
-                        Copy Prompt: 5 Sales Listings
-                    </button>
-                     <button class="gemini-prompt" data-prompt="Draft a professional turnover email to my bosses, Dane and John. Explain the system I've built (Mission HQ, color-coded zones, one-way buyer path) and provide the single link to the master Google Folder. Emphasize that the Master Inventory sheet, all photos, and all operational documents (waivers, maps) are in that folder, creating a 'single source of truth' for them to manage the sale.">
-                        Copy Prompt: Turnover Email
-                    </button>
-                    <form class="add-task-form"><input type="text" placeholder="Add custom task..."><button type="submit">Add</button></form>
-                </div>
-            </div>
-        </div>
-
+        <!-- Footer -->
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>Robstown Factory OS © 2025 | Built for Efficient Factory Liquidation</p>
+        </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const STORAGE_KEYS = {
-                notes: 'factoryProjectNotes',
-                tasks: 'factoryProjectTasks',
-                openPhases: 'factoryOpenPhases'
-            };
-
-            const notesArea = document.getElementById('project-notes');
-            const progressBar = document.getElementById('progress-bar');
-            const progressText = document.getElementById('progress-text');
-            const phaseHeaders = document.querySelectorAll('.phase-header');
-            const addTaskForms = document.querySelectorAll('.add-task-form');
-            const taskLists = document.querySelectorAll('.task-list');
-            const promptButtons = document.querySelectorAll('.gemini-prompt');
-            const resetButton = document.getElementById('reset-button');
-
-            function updateProgress() {
-                const checkboxes = document.querySelectorAll('.task input[type="checkbox"]');
-                const checked = document.querySelectorAll('.task input[type="checkbox"]:checked');
-                const total = checkboxes.length;
-                const percentage = total > 0 ? (checked.length / total) * 100 : 0;
-                
-                progressBar.style.width = percentage + '%';
-                progressText.textContent = `${checked.length} / ${total} (${Math.round(percentage)}%)`;
-            }
-
-            function saveState() {
-                // Save notes
-                localStorage.setItem(STORAGE_KEYS.notes, notesArea.value);
-
-                // Save task states
-                const taskStates = {};
-                document.querySelectorAll('.task').forEach((task, index) => {
-                    const checkbox = task.querySelector('input[type="checkbox"]');
-                    const label = task.querySelector('label');
-                    // Use a stable ID if it exists, otherwise use an index-based key
-                    const id = checkbox.id || `custom-${task.closest('.phase').id}-${index}`;
-                    taskStates[id] = {
-                        checked: checkbox.checked,
-                        isCustom: !checkbox.id,
-                        text: label.textContent,
-                        phaseId: task.closest('.task-list').id
-                    };
-                });
-                localStorage.setItem(STORAGE_KEYS.tasks, JSON.stringify(taskStates));
-                
-                // Save open phases
-                const openPhases = [];
-                document.querySelectorAll('.phase.active').forEach(phase => {
-                    openPhases.push(phase.id);
-                });
-                localStorage.setItem(STORAGE_KEYS.openPhases, JSON.stringify(openPhases));
-            }
-
-            function createTaskElement(text, checked, phaseListId) {
-                const list = document.getElementById(phaseListId);
-                if (!list) return;
-                
-                const li = document.createElement('li');
-                li.className = 'task custom-task';
-                
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.checked = checked;
-                
-                const label = document.createElement('label');
-                label.textContent = text;
-                
-                // Need unique IDs for labels to work
-                const uniqueId = `custom-task-${Date.now()}-${Math.random()}`;
-                checkbox.id = uniqueId;
-                label.setAttribute('for', uniqueId);
-                
-                li.appendChild(checkbox);
-                li.appendChild(label);
-                list.appendChild(li);
-                
-                // Add listener to new checkbox
-                checkbox.addEventListener('change', () => {
-                    updateProgress();
-                    saveState();
-                });
-            }
-
-            function loadState() {
-                // Load notes
-                notesArea.value = localStorage.getItem(STORAGE_KEYS.notes) || '';
-
-                // Load tasks
-                const taskStates = JSON.parse(localStorage.getItem(STORAGE_KEYS.tasks)) || {};
-                
-                // Clear existing custom tasks before loading
-                document.querySelectorAll('.custom-task').forEach(task => task.remove());
-                
-                for (const id in taskStates) {
-                    const taskData = taskStates[id];
-                    if (taskData.isCustom) {
-                        createTaskElement(taskData.text, taskData.checked, taskData.phaseId);
-                    } else {
-                        // This is a static task, just set its checked state
-                        const checkbox = document.getElementById(id);
-                        if (checkbox) {
-                            checkbox.checked = taskData.checked;
-                        }
-                    }
-                }
-                
-                // Load open phases
-                const openPhases = JSON.parse(localStorage.getItem(STORAGE_KEYS.openPhases)) || [];
-                openPhases.forEach(id => {
-                    const phase = document.getElementById(id);
-                    if (phase) {
-                        phase.classList.add('active');
-                        phase.querySelector('.phase-content').style.maxHeight = phase.querySelector('.phase-content-inner').scrollHeight + 'px';
-                    }
-                });
-            }
-
-            // --- Event Listeners ---
-            
-            // Phase Toggle
-            phaseHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const phase = header.parentElement;
-                    const content = header.nextElementSibling;
-                    phase.classList.toggle('active');
-                    
-                    if (phase.classList.contains('active')) {
-                        content.style.maxHeight = content.querySelector('.phase-content-inner').scrollHeight + 'px';
-                    } else {
-                        content.style.maxHeight = '0';
-                    }
-                    saveState(); // Save which phases are open
-                });
-            });
-
-            // Task Checkboxes (for static tasks)
-            document.querySelectorAll('.task-list input[type="checkbox"]').forEach(cb => {
-                cb.addEventListener('change', () => {
-                    updateProgress();
-                    saveState();
-                });
-            });
-
-            // Notes
-            notesArea.addEventListener('input', saveState);
-
-            // Add Task Forms
-            addTaskForms.forEach(form => {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const input = form.querySelector('input[type="text"]');
-                    const text = input.value.trim();
-                    if (text) {
-                        const phaseListId = form.previousElementSibling.id || form.closest('.phase-content-inner').querySelector('.task-list').id;
-                        createTaskElement(text, false, phaseListId);
-                        input.value = '';
-                        updateProgress();
-                        saveState();
-                        
-                        // Re-calculate max-height for open accordions
-                        const phase = form.closest('.phase');
-                        if(phase.classList.contains('active')) {
-                            const content = form.closest('.phase-content');
-                            content.style.maxHeight = content.querySelector('.phase-content-inner').scrollHeight + 'px';
-                        }
-                    }
-                });
-            });
-
-            // Gemini Prompt Buttons
-            promptButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const promptText = button.getAttribute('data-prompt');
-                    navigator.clipboard.writeText(promptText).then(() => {
-                        const originalText = button.textContent;
-                        button.textContent = 'Copied!';
-                        button.disabled = true;
-                        setTimeout(() => {
-                            button.textContent = originalText;
-                            button.disabled = false;
-                        }, 1500);
-                    });
-                });
-            });
-            
-            // Reset Button
-            resetButton.addEventListener('click', () => {
-                if (confirm('Are you sure you want to reset all tasks and notes?\nThis cannot be undone.')) {
-                    localStorage.removeItem(STORAGE_KEYS.notes);
-                    localStorage.removeItem(STORAGE_KEYS.tasks);
-                    localStorage.removeItem(STORAGE_KEYS.openPhases);
-                    location.reload();
-                }
-            });
-
-            // --- Initial Load ---
-            loadState();
-            updateProgress();
-        });
-    </script>
 </body>
 </html>

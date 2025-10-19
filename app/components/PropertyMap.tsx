@@ -32,15 +32,27 @@ export const PropertyMap: React.FC<PropertyMapProps> = ({ buildings, selectedBui
                     <path d="M80,0 L80,400" stroke="#4b5563" strokeWidth="8" />
 
                     {/* Buildings */}
-                    {buildings.map(b => (
-                        <path 
-                            key={b.id}
-                            d={b.path}
-                            className={`map-building cursor-pointer transition-all duration-300 ${MAP_STATUS_COLORS[b.status]} ${selectedBuildingId === b.id ? 'map-building-selected' : ''}`}
-                            strokeWidth="2"
-                            onClick={() => onSelectBuilding(b.id)}
-                        />
-                    ))}
+                    {buildings.map(b => {
+                        const fillColor = MAP_STATUS_COLORS[b.status] || MAP_STATUS_COLORS['Pending'];
+                        const isSelected = selectedBuildingId === b.id;
+                        
+                        return (
+                            <g key={b.id}>
+                                <path 
+                                    d={b.path}
+                                    fill={isSelected ? fillColor : `${fillColor}80`}
+                                    stroke={isSelected ? fillColor : '#4b5563'}
+                                    strokeWidth={isSelected ? '3' : '2'}
+                                    className="cursor-pointer transition-all duration-300"
+                                    style={{
+                                        filter: isSelected ? 'url(#glow)' : 'none',
+                                        opacity: isSelected ? 1 : 0.7
+                                    }}
+                                    onClick={() => onSelectBuilding(b.id)}
+                                />
+                            </g>
+                        );
+                    })}
                     
                     {/* Current Location Marker */}
                     <circle cx="230" cy="230" r="12" fill="#3b82f6" stroke="#ffffff" strokeWidth="3" style={{filter: 'url(#glow)'}} />
