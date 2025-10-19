@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Inspector Walk-Through Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        h2 {
+            color: #1e40af;
+            font-size: 1.4rem;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        h2:first-child {
+            margin-top: 0;
+        }
+        
+        h3 {
+            color: #374151;
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+        
+        .step {
+            background: #f3f4f6;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+            border-radius: 4px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            color: #6b7280;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        
+        th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 15px;
+            border-left: 4px solid #f59e0b;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight strong {
+            color: #b45309;
+        }
+        
+        .script {
+            background: #eff6ff;
+            padding: 15px;
+            border-left: 4px solid #3b82f6;
+            margin: 10px 0;
+            font-style: italic;
+            border-radius: 4px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .step, .highlight, .script {
+                page-break-inside: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            table {
+                font-size: 0.8rem;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏛️ City Inspector Walk-Through Guide</h1>
+            <p>Professional site presentation for lighting approval and compliance demonstration</p>
+        </header>
+        
+        <div class="content">
+            
+            <h2>Step 0: Pre-Walk Setup (15 Minutes Before)</h2>
+            
+            <div class="step">
+                <h3><span class="step-number">1</span> Create Simple Zone Map</h3>
+                <p>Draw a basic facility map on whiteboard or paper showing:</p>
+                <ul class="checklist">
+                    <li><strong>ENTRANCE (E)</strong> - Main entry point</li>
+                    <li><strong>THE ROUTE (→)</strong> - Clear inspection path</li>
+                    <li><strong>HAZARD ZONE (H)</strong> - Roof hole area</li>
+                    <li><strong>ELECTRICAL PANEL (P)</strong> - Main disconnect</li>
+                    <li><strong>CLEARED ZONE (C)</strong> - 25% complete area</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">2</span> Prepare Welcome Area</h3>
+                <ul class="checklist">
+                    <li>Set clean table near entrance</li>
+                    <li>Lay out hard hats and safety vests</li>
+                    <li>Place clipboard with zone map and progress tracker</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">3</span> Final Safety Check</h3>
+                <ul class="checklist">
+                    <li>Sweep designated route - remove tools/debris</li>
+                    <li>Ensure hazard area has caution tape and cones</li>
+                    <li>Place bucket under drip area</li>
+                    <li>Verify 3-foot clearance around electrical panel</li>
+                </ul>
+            </div>
+            
+            <h2>Step 1: The Introduction (First 5 Minutes)</h2>
+            
+            <div class="script">
+                <strong>Greeting:</strong> "Welcome. Thank you for your time. For your safety, please grab a hard hat and vest."
+            </div>
+            
+            <div class="script">
+                <strong>Frame the Tour:</strong> "We have a controlled site plan. I've mapped our inspection route here [point to map]. Our process is driven by safety and systematic liquidation, which we track in real-time on this Progress Tracker."
+            </div>
+            
+            <div class="highlight">
+                <strong>Pro-Tip:</strong> Use their name often. Shows preparation and professionalism.
+            </div>
+            
+            <h2>Step 2: The Controlled Walk-Through</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Action / Script</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>CLEARED ZONE (C)</strong></td>
+                        <td>"This is the outcome of our Phase 1 liquidation. We are systematically turning chaos into capital and achieving a true blank canvas. Our Tracker shows we're 25% complete."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HAZARD ZONE (H)</strong></td>
+                        <td>"We have a structural issue here. The area is sealed off. We have [Contractor Name] scheduled, and the permit for repair is being expedited. Safety is our priority until repair is complete."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ELECTRICAL PANEL (P)</strong></td>
+                        <td>"This is the main disconnect. We have [Electrician Name/Company], a licensed master electrician, prepared to conduct the necessary safety and repair work. We've isolated the system and cleared the area for immediate access."</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>Step 3: The Ask (At Electrical Panel)</h2>
+            
+            <div class="script">
+                <strong>The Request:</strong> "To safely and efficiently complete the necessary electrical work—and to allow our contractors clear visibility on the main floor—we need to request approval to energize the critical overhead safety lighting. We are ready to submit the required permits and documentation for [Electrician Name] as soon as we have your preliminary approval."
+            </div>
+            
+            <div class="highlight">
+                <strong>Key Phrase:</strong> Request "critical safety lighting" (not just "turn on lights"). This frames it as a safety necessity, not a convenience.
+            </div>
+            
+            <h2>Step 4: The Wrap-Up (Exit)</h2>
+            
+            <div class="step">
+                <h3><span class="step-number">1</span> Review</h3>
+                <div class="script">
+                    "Do you have any immediate concerns regarding our safety protocols or site management, [Inspector's Name]?"
+                </div>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">2</span> Next Step</h3>
+                <div class="script">
+                    "What is the next step on your end for the lighting approval, and who should I send the permit package to for the final sign-off?"
+                </div>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">3</span> Follow-Up</h3>
+                <p>Send professional "Thank You" email within one hour:</p>
+                <ul class="checklist">
+                    <li>Thank inspector for their time</li>
+                    <li>Reiterate commitment to safety</li>
+                    <li>Attach electrician contact info</li>
+                    <li>Reference next steps discussed</li>
+                </ul>
+            </div>
+            
+            <h2>Quick Reference Checklist</h2>
+            
+            <ul class="checklist">
+                <li>Zone map created and visible</li>
+                <li>Hard hats and vests ready</li>
+                <li>Route cleared of debris</li>
+                <li>Hazard area secured with tape/cones</li>
+                <li>Bucket under drip area</li>
+                <li>Electrical panel has 3-foot clearance</li>
+                <li>Progress tracker printed</li>
+                <li>Electrician contact info on clipboard</li>
+                <li>Follow-up email template ready</li>
+            </ul>
+            
+            <div class="highlight">
+                <strong>Remember:</strong> Control the route, control the narrative. Your preparation demonstrates site control and professionalism.
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
