@@ -11,6 +11,9 @@ echo   - Demo guide for Dane
 echo   - Today's checklist
 echo   - Dashboard screenshot in presentation
 echo   - Navigation integration
+echo   - Google Drive setup materials
+echo   - SOP documents for Mike
+echo   - Buyer packet templates
 echo   - All documentation
 echo.
 pause
