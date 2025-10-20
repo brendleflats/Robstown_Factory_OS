@@ -34,3 +34,5 @@ Factory/*.mp4
 !Factory/small-video.mp4
 Factory/*.mp4 
 Factory/VID_*.mp4 
+Factory/*.mp4 
+*.mp4 
