@@ -5,6 +5,9 @@
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-success?style=for-the-badge)](https://brendleflats.github.io/Robstown_Factory_OS/home.html)
 [![GitHub](https://img.shields.io/badge/📦_GitHub-blue?style=for-the-badge)](https://github.com/brendleflats/Robstown_Factory_OS)
+[![Changelog](https://img.shields.io/badge/📋_Changelog-orange?style=for-the-badge)](./CHANGELOG.md)
+
+**Latest Update**: Navigation system unified, all pages accessible, Factory photos integrated. See [CHANGELOG](./CHANGELOG.md) for details.
 
 ---
 

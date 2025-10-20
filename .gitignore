@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Large video files (use compressed versions only)
+Factory/VID_20251019_171316903.mp4
+
+# Exclude large Factory photo directory from git (470MB+)
+# Only curated assets should be in docs/assets/
+Factory/*.jpg
+Factory/*.png
+Factory/*.mp4
+!Factory/small-video.mp4
+Factory/*.mp4 
+Factory/VID_*.mp4 
