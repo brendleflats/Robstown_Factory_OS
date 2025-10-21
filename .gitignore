@@ -32,6 +32,12 @@ Factory/*.jpg
 Factory/*.png
 Factory/*.mp4
 !Factory/small-video.mp4
+
+# Exclude New factory directory (200MB+ of raw site photos)
+New factory/
+*.zip
+
+# Keep video exclusions
 Factory/*.mp4 
 Factory/VID_*.mp4 
 Factory/*.mp4 
