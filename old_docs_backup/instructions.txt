@@ -1,0 +1,176 @@
+Here is the improved plan.
+
+1. The New Project Structure
+Instead of dumping everything in the root, we'll create dedicated folders. Your Factory_OS folder should look like this:
+
+/Robstown_Factory_OS
+│
+├── .github/workflows/
+│   ├── deploy-checklist.yml  <-- NEW: Deploys ONLY the checklist
+│   └── deploy-app.yml        <-- NEW: Deploys your REAL app
+│
+├── app/                      <-- YOUR VITE/REACT APP LIVES HERE
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── Dockerfile            <-- Dockerfile moves inside 'app'
+│   └── ... (all other app files)
+│
+├── docs/                     <-- YOUR CHECKLIST LIVES HERE
+│   └── index.html            <-- 'roy.html' is renamed and moved
+│
+└── README.md
+This is much cleaner. app/ is your main application, and docs/ holds your static project plan.
+
+2. Your New Step-by-Step Workflow
+Step 1: Restructure Your Folders
+Run these commands in your Factory_OS terminal to get the new structure.
+
+Bash
+
+# 1. Create the new folders
+mkdir app
+mkdir docs
+mkdir -p .github/workflows
+
+# 2. Move your app files into 'app/'
+# (This moves all .ts, .tsx, .json, etc. files)
+mv App.tsx constants.ts metadata.json types.ts index.html package.json \
+   tsconfig.json vite.config.ts index.tsx components utils app/
+
+# 3. Move 'roy.html' into 'docs/' and rename it
+mv roy.html docs/index.html
+Note: Your README.md and any .gitignore file should stay in the root.
+
+Step 2: Update Your Checklist Deployment
+Your old workflow deployed everything. This new one only deploys your docs/ folder.
+
+Create .github/workflows/deploy-checklist.yml and paste this in:
+
+YAML
+
+name: Deploy Checklist (from /docs)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # This is the key change: only upload the 'docs' folder
+          path: './docs'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+After you push, your checklist will be live at https://brendleflats.github.io/Robstown_Factory_OS/. (It uses index.html by default, so no need for /roy.html).
+
+Step 3: Update Your Dockerfile
+Move your Dockerfile into the new app/ directory. Because it's now inside the app's folder, the Dockerfile becomes simpler and more standard.
+
+Open app/Dockerfile and replace its contents with this:
+
+Dockerfile
+
+# STAGE 1: Build the React App
+FROM node:18-alpine AS builder
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the app's source code
+COPY . .
+
+# Build for production
+RUN npm run build
+
+# STAGE 2: Serve the App
+FROM nginx:1.25-alpine
+# Copy the built files from the builder stage
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+This is much cleaner. All the COPY commands are now relative to the app/ folder.
+
+To build/run locally:
+
+Bash
+
+# 1. Go into the app directory
+cd app
+
+# 2. Build the image
+docker build -t robstown-os .
+
+# 3. Run it
+docker run -p 8080:80 robstown-os
+Step 4: How to Iterate on Your App
+This doesn't change much, but you just have to cd first.
+
+Bash
+
+# 1. Go into the app directory
+cd app
+
+# 2. Install dependencies (only once)
+npm install
+
+# 3. Run the dev server
+npm run dev
+Now you can edit your code in app/src/ and see live updates at http://localhost:5173.
+
+3. The Long-Term Improvement (The Real "OS")
+Your roy.html checklist is a great plan, but it's not a shared system. The localStorage problem you identified means Dane and John will never see your checked boxes.
+
+The real improvement is to make your React app replace the HTML file.
+
+Your app/ should become the "Factory OS." You should build components for:
+
+A "Tasks" page: This would be your checklist, but the tasks are loaded from a database.
+
+An "Inventory" page: This would be a front-end for the Master Google Sheet.
+
+A "Documents" page: This would link to the Safety Waivers and Maps.
+
+To make it truly shared, you'd stop using localStorage and connect your React app to a free, simple backend like Supabase. When you check a box, it updates the database, and Dane will see the change in real-time.
+
+This new structure gives you the power to do that, separating your simple plan (docs/) from your powerful application (app/).
+
+Connect React: Supabase provides a JavaScript client library. You'll install it in your app/ folder:
+
+Bash
+cd app
+npm install @supabase/supabase-js
+
+Build Your App: Now, instead of localStorage, your React components will use Supabase functions.
+
+To get tasks: supabase.from('tasks').select('*')
+
+To check a box: supabase.from('tasks').update({ is_checked: true }).eq('id', task.id)
+
+Authentication: Supabase has built-in functions for supabase.auth.signInWithPassword() and supabase.auth.signUp(). This is weeks of work saved.
+
+https://github.com/brendleflats/Robstown_Factory_OS.git is the repo we will commit an push this to when we have completed this and created a successful masterpiece for the Robstown Factory. 
+I need to be able to view and utilize all aspects of this app today! Let's get to work, give me your analysis and suggestions for improvement an let's iterate together amigo

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory OS - Project Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .card h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card h2 .emoji {
+            font-size: 1.2em;
+        }
+        .card p {
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        .card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4ade80;
+            font-weight: bold;
+        }
+        .action-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .action-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .step {
+            background: rgba(74, 222, 128, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #4ade80;
+        }
+        .step h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .step-number {
+            background: #4ade80;
+            color: #1e3c72;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .files-list {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .files-list h3 {
+            margin-bottom: 15px;
+            color: #4ade80;
+        }
+        .files-list ul {
+            list-style: none;
+        }
+        .files-list li {
+            padding: 5px 0;
+            color: #e0e0e0;
+        }
+        .highlight {
+            background: rgba(74, 222, 128, 0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .subtitle {
+                font-size: 1.1em;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏭 Robstown Factory OS</h1>
+        <p class="subtitle">Your Complete Factory Liquidation Management System</p>
+
+        <div class="grid">
+            <div class="card">
+                <h2><span class="emoji">📊</span> Dashboard App</h2>
+                <p>React/Vite property liquidation dashboard with real-time inventory tracking.</p>
+                <ul>
+                    <li>Interactive property map</li>
+                    <li>Building-based filtering</li>
+                    <li>Real-time KPIs</li>
+                    <li>Item detail modals</li>
+                    <li>Search & filter tools</li>
+                    <li>Responsive design</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Location:</strong> <span class="highlight">/app</span></p>
+                <p><strong>Run:</strong> <code>cd app && npm run dev</code></p>
+            </div>
+
+            <div class="card">
+                <h2><span class="emoji">✅</span> Project Checklist</h2>
+                <p>Interactive 5-phase liquidation workflow with progress tracking.</p>
+                <ul>
+                    <li>Phase 1: Logistics & Mission HQ</li>
+                    <li>Phase 2: Single Source of Truth</li>
+                    <li>Phase 3: Inventory Blitz</li>
+                    <li>Phase 4: Safety & Operations</li>
+                    <li>Phase 5: Turnover Kit</li>
+                    <li>Auto-save progress</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Location:</strong> <span class="highlight">/docs</span></p>
+                <p><strong>View:</strong> Open docs/index.html in browser</p>
+            </div>
+
+            <div class="card">
+                <h2><span class="emoji">🚀</span> Deployment</h2>
+                <p>Ready-to-deploy with Docker and GitHub Actions.</p>
+                <ul>
+                    <li>GitHub Pages for checklist</li>
+                    <li>Docker containerization</li>
+                    <li>CI/CD workflow included</li>
+                    <li>Production-ready builds</li>
+                    <li>Multi-stage Docker builds</li>
+                    <li>Nginx static serving</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Deploy:</strong> Push to GitHub</p>
+                <p><strong>Pages URL:</strong> brendleflats.github.io/Robstown_Factory_OS/</p>
+            </div>
+        </div>
+
+        <div class="files-list">
+            <h3>📁 Files Created For You</h3>
+            <ul>
+                <li>✓ <strong>RESTRUCTURE.bat</strong> - One-click restructuring script</li>
+                <li>✓ <strong>QUICKSTART.md</strong> - 5-minute getting started guide</li>
+                <li>✓ <strong>RESTRUCTURE_GUIDE.md</strong> - Detailed manual instructions</li>
+                <li>✓ <strong>PROJECT_ANALYSIS.md</strong> - Complete analysis & action plan</li>
+                <li>✓ <strong>README_NEW.md</strong> - Full project documentation</li>
+                <li>✓ <strong>.github_workflows_deploy-checklist.yml</strong> - GitHub Actions workflow</li>
+                <li>✓ <strong>app_Dockerfile</strong> - Docker deployment config</li>
+                <li>✓ <strong>PROJECT_OVERVIEW.html</strong> - This visual overview</li>
+            </ul>
+        </div>
+
+        <div class="action-section">
+            <h2>🎯 Your Action Plan</h2>
+            <p style="text-align: center; margin-bottom: 30px; font-size: 1.1em;">
+                Follow these steps to get everything running today!
+            </p>
+            
+            <div class="steps">
+                <div class="step">
+                    <h3><span class="step-number">1</span> Restructure</h3>
+                    <p>Double-click <strong>RESTRUCTURE.bat</strong> to organize files into app/ and docs/ folders.</p>
+                </div>
+
+                <div class="step">
+                    <h3><span class="step-number">2</span> Install</h3>
+                    <p>Open terminal: <code>cd app</code> then <code>npm install</code> to install dependencies.</p>
+                </div>
+
+                <div class="step">
+                    <h3><span class="step-number">3</span> Test</h3>
+                    <p>Run <code>npm run dev</code> in app/ and open docs/index.html to test both systems.</p>
+                </div>
+
+                <div class="step">
+                    <h3><span class="step-number">4</span> Deploy</h3>
+                    <p>Push to GitHub to auto-deploy checklist. Share the URL with your team!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid" style="margin-top: 50px;">
+            <div class="card" style="background: rgba(74, 222, 128, 0.2); border-color: #4ade80;">
+                <h2><span class="emoji">💡</span> Use Today</h2>
+                <ul>
+                    <li>View property inventory</li>
+                    <li>Start Phase 1 tasks</li>
+                    <li>Add custom checklist items</li>
+                    <li>Take project notes</li>
+                    <li>Generate AI documents</li>
+                    <li>Track overall progress</li>
+                </ul>
+            </div>
+
+            <div class="card" style="background: rgba(251, 191, 36, 0.2); border-color: #fbbf24;">
+                <h2><span class="emoji">🔮</span> Add Later</h2>
+                <ul>
+                    <li>Supabase integration</li>
+                    <li>Real-time collaboration</li>
+                    <li>User authentication</li>
+                    <li>Team notifications</li>
+                    <li>Mobile app version</li>
+                    <li>QR code scanning</li>
+                </ul>
+            </div>
+
+            <div class="card" style="background: rgba(139, 92, 246, 0.2); border-color: #8b5cf6;">
+                <h2><span class="emoji">📚</span> Resources</h2>
+                <ul>
+                    <li>QUICKSTART.md - Start here</li>
+                    <li>RESTRUCTURE_GUIDE.md - Details</li>
+                    <li>PROJECT_ANALYSIS.md - Full plan</li>
+                    <li>README_NEW.md - Documentation</li>
+                    <li>instructions.txt - Original specs</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p style="font-size: 1.2em; margin-bottom: 10px;">🤝 Let's Build This Masterpiece Together!</p>
+            <p>Robstown Factory OS - Your Complete Liquidation Management System</p>
+            <p style="margin-top: 20px; opacity: 0.7;">Created with ❤️ for efficient factory liquidation</p>
+        </div>
+    </div>
+</body>
+</html>
